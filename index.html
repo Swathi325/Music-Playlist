@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Music Playlist Generator</title>
+    <style>
+/*internal css below and element selectors are used*/
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4eeff;
+            background-image: url('download.jpeg');
+            background-size: 1300px;
+            background-position: center;
+            background-repeat: no-repeat;
+            }
+
+
+        header {
+            background-color: #4c60b9;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position:sticky;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            color:blanchedalmond;
+            font-style: bold;
+            font-size: 20px;
+            background: #d9f2ff;
+            background-image: url('Tate Modern.jpeg');
+            background-size: 640px;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #537791;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #f5e1da;
+        }
+/*id selector is used in case of playlist*/
+        #playlist {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #8ecccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+/*class selector is used in case of playlist item*/
+        .playlist-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        nav {
+  background-color: #424874;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Interactive Music Playlist Generator</h1>
+    </header>
+
+    <nav>
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <form id="playlistForm">
+        <label for="songTitle">Song Title:</label>
+        <input type="text" id="songTitle" name="songTitle" required>
+
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" name="artist" required>
+
+        <label for="mood">Mood:</label>
+        <select id="mood" name="mood" required>
+            <option value="happy">Happy</option>
+            <option value="relaxed">Relaxed</option>
+            <option value="energetic">Energetic</option>
+            <option value="chill">Chill</option>
+        </select>
+
+        <label for="genre">Genre:</label>
+        <select id="genre" name="genre" required>
+            <option value="Pop">Pop</option>
+            <option value="Hip-hop">Hip-hop</option>
+            <option value="Rock">Rock</option>
+        </select>
+
+        <button type="button" onclick="addSong()">Add to Playlist</button>
+    </form>
+
+    <div id="playlist">
+        <h2>Your Playlist</h2>
+        <div id="playlistItems"></div>
+        
+    </div>
+        
+
+    <script>
+        function addSong() {
+            var songTitle = document.getElementById('songTitle').value;
+            var artist = document.getElementById('artist').value;
+            var mood = document.getElementById('mood').value;
+            
+            // Validate input
+            if (!songTitle || !artist || !mood) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // Create playlist item
+            var playlistItem = document.createElement('div');
+            playlistItem.className = 'playlist-item';
+
+            var details = document.createElement('div');
+            details.textContent = `${songTitle} - ${artist} (Mood: ${mood})`;
+
+            var playButton = document.createElement('button');
+            playButton.textContent = 'Play';
+            playButton.addEventListener('click', function () {
+                play(mood);
+            });
+
+
+            playlistItem.appendChild(details);
+            playlistItem.appendChild(playButton);
+
+            // Append to playlist
+            document.getElementById('playlistItems').appendChild(playlistItem);
+
+            // Clear form fields
+            document.getElementById('songTitle').value = '';
+            document.getElementById('artist').value = '';
+        }
+
+        function play() {
+        var audio = new Audio('move-your-vibe-170258.mp3');
+        audio.play();
+}
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>
